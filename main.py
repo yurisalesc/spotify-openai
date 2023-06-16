@@ -1,10 +1,10 @@
-from musixmatch_client import MusixMatchClient
 from openai_client import OpenAIClient
 from spotify_client import SpotifyClient
+from vagalume_client import VagalumeClient
 
-musixmatch = MusixMatchClient()
 openai = OpenAIClient()
 spotify = SpotifyClient()
+vagalume = VagalumeClient()
 
 
 def display_formatted_data(artist: str, track: str, sentiment: str) -> None:
@@ -17,7 +17,7 @@ def display_sentiments_for_playlist_tracks(tracks: list) -> None:
         track_info = track_info["track"]
         track, artist = track_info["name"], track_info["artists"][0]["name"]
 
-        lyrics = musixmatch.get_lyrics(track=track, artist=artist)
+        lyrics = vagalume.get_lyrics(track=track, artist=artist)
 
         sentiment = openai.classify_sentiment(lyrics=lyrics)
 
@@ -25,6 +25,7 @@ def display_sentiments_for_playlist_tracks(tracks: list) -> None:
 
 
 playlists = spotify.get_playlists()
+playlists = playlists[-2:-1]
 
 for playlist in playlists:
     print(f"\n====================={playlist['name']}=====================")
