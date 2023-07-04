@@ -1,6 +1,6 @@
 import requests
 
-from config import VAGALUME_API_KEY
+from settings import VAGALUME_API_KEY
 
 
 class VagalumeClient:

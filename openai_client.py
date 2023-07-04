@@ -1,6 +1,7 @@
 import openai
+import tiktoken
 
-from config import OPENAI_API_KEY
+from settings import OPENAI_API_KEY
 
 
 class OpenAIClient:
@@ -8,9 +9,11 @@ class OpenAIClient:
         openai.api_key = OPENAI_API_KEY
 
     def classify_sentiment(self, lyrics: str) -> str:
+        prompt = f"Classify the sentiment in this lyrics:{lyrics}"
+
         response = openai.Completion.create(
             model="text-davinci-003",
-            prompt=f"Classify the sentiment in this lyrics:{lyrics}",
+            prompt=prompt,
             temperature=0,
             max_tokens=200,
             top_p=1.0,

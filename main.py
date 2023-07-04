@@ -25,7 +25,7 @@ def display_sentiments_for_playlist_tracks(tracks: list) -> None:
 
 
 playlists = spotify.get_playlists()
-playlists = playlists[-2:-1]
+playlists = playlists[::1]
 
 for playlist in playlists:
     print(f"\n====================={playlist['name']}=====================")
