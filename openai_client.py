@@ -1,5 +1,4 @@
 import openai
-import tiktoken
 
 from settings import OPENAI_API_KEY
 
